@@ -41,20 +41,51 @@ conda install -c conda-forge ecflow
 ### Verify the installation:
 ecflow_client --version
 
-#Running ecflow
+# Running ecflow
 
-# Set environment variables
+## Set environment variables
 export ECF_HOME=/home/mjisan/ecflow_server
+
 export ECF_INCLUDE=/home/mjisan/ecflow_server/include
+
 export ECF_FILES=/home/mjisan/ecflow_server/files
+
 export ECF_HOST=hercules-login-2.hpc.msstate.edu
+
 export ECF_PORT=11799
+
 export ECF_SCRIPT_CMD="bash %ECF_SCRIPT%"
 
-# Create necessary directories
+## Create necessary directories
 mkdir -p /home/mjisan/ecflow_server
 mkdir -p /home/mjisan/ecflow_server/include
 mkdir -p /home/mjisan/ecflow_server/files
 
+## Create mock script files for each task
+echo 'echo "Mock script for prepare_environment"' > /home/mjisan/ecflow_server/files/prepare_environment.ecf
+echo 'echo "Mock script for copy_static_files"' > /home/mjisan/ecflow_server/files/copy_static_files.ecf
+echo 'echo "Mock script for create_param_nml"' > /home/mjisan/ecflow_server/files/create_param_nml.ecf
+echo 'echo "Mock script for create_bctides_in"' > /home/mjisan/ecflow_server/files/create_bctides_in.ecf
+echo 'echo "Mock script for create_river_forcing_nwm"' > /home/mjisan/ecflow_server/files/create_river_forcing_nwm.ecf
+echo 'echo "Mock script for create_surface_forcing_gfs"' > /home/mjisan/ecflow_server/files/create_surface_forcing_gfs.ecf
+echo 'echo "Mock script for create_surface_forcing_hrrr"' > /home/mjisan/ecflow_server/files/create_surface_forcing_hrrr.ecf
+echo 'echo "Mock script for create_obc_3dth_nudge"' > /home/mjisan/ecflow_server/files/create_obc_3dth_nudge.ecf
+echo 'echo "Mock script for create_restart_file"' > /home/mjisan/ecflow_server/files/create_restart_file.ecf
+
+## Restart the EC-Flow server
+ecflow_stop.sh
+ecflow_start.sh
+
+## Delete the existing suite
+ecflow_client --delete force=yes /stf3d_prep
+
+## Load the new workflow definition
+ecflow_client --load=stf3d_prep.def
+
+## Begin the workflow
+ecflow_client --begin=stf3d_prep
+
+## Check the log file
+tail -f /home/mjisan/ecflow_server/hercules-login-2.hpc.msstate.edu.11799.ecf.log
 
 
