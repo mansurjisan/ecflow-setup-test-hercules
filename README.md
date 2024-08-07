@@ -41,6 +41,20 @@ conda install -c conda-forge ecflow
 ### Verify the installation:
 ecflow_client --version
 
+#Running ecflow
+
+# Set environment variables
+export ECF_HOME=/home/mjisan/ecflow_server
+export ECF_INCLUDE=/home/mjisan/ecflow_server/include
+export ECF_FILES=/home/mjisan/ecflow_server/files
+export ECF_HOST=hercules-login-2.hpc.msstate.edu
+export ECF_PORT=11799
+export ECF_SCRIPT_CMD="bash %ECF_SCRIPT%"
+
+# Create necessary directories
+mkdir -p /home/mjisan/ecflow_server
+mkdir -p /home/mjisan/ecflow_server/include
+mkdir -p /home/mjisan/ecflow_server/files
 
 
 
