@@ -88,4 +88,12 @@ ecflow_client --begin=stf3d_prep
 ## Check the log file
 tail -f /home/mjisan/ecflow_server/hercules-login-2.hpc.msstate.edu.11799.ecf.log
 
+## Force delete 
+
+ecflow_client --delete force /stf3d_prep_new
+
+## Loading suite definition
+ecflow_client --load=test.def
+
+
 
