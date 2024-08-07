@@ -21,7 +21,7 @@ To load these modules, use:
 ```bash
 module load glx/1.4 libxkbcommon/1.4.0 zlib/1.2.13 sqlite/3.39.4 qt/5.15.8 cmake/3.26.3 miniconda3/24.3.0
 
-## Installation Process
+### Installation Process
 ### Initial Attempt: CMake
 
 Initially, an attempt was made to install ecFlow using CMake commands. However, this method was unsuccessful due to version compatibility issues with CMake.
