@@ -94,6 +94,42 @@ ecflow_client --delete force /stf3d_prep_new
 
 ## Loading suite definition
 ecflow_client --load=test.def
+ecflow_client --begin=test
+
+## to replace test suite or to replace part of the suite:
+ecflow_client --replace=/test test.def
+ecflow_client --replace=/test/t2 test.def
+
+## to suspend a suite
+ecflow_client --suspend=/test
+
+## to replace 
+ecflow_client --replace=/test test.def
+
+## check status
+ecflow_client --get_state=/test
+
+## Force Delete
+ecflow_client --delete force=yes /test
+
+## Load and Begin
+ecflow_client --load=test.def
+ecflow_client --begin=test
+
+## def file 
+# Definition of the suite test.
+suite test
+   edit ECF_INCLUDE "/home/mjisan/course"   # replace '$HOME' with the path to your home directory
+   edit ECF_HOME    "/home/mjisan/course"
+   family f1
+      task t1
+         edit SLEEP 20
+      task t2
+         edit SLEEP 20
+   endfamily
+endsuite
+
+
 
 
 
