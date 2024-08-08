@@ -117,6 +117,21 @@ ecflow_client --delete force=yes /test
 ecflow_client --load=test.def
 ecflow_client --begin=test
 
+
+## def file 
+# Definition of the suite test.
+suite test
+   edit ECF_INCLUDE "/home/mjisan/course"   # replace '$HOME' with the path to your home directory
+   edit ECF_HOME    "/home/mjisan/course"
+   family f1
+      task t1
+         edit SLEEP 20
+      task t2
+         edit SLEEP 20
+   endfamily
+endsuite
+
+
 ## def file 
 # Definition of the suite test.
 suite test
