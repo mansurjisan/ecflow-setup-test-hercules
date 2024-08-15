@@ -283,6 +283,19 @@ GUI interface
 ![2024-08-08 08_53_49-ecFlowUI (5 13 3) - (menu_ admin)@hercules-login-2 hpc msstate edu](https://github.com/user-attachments/assets/34903685-d903-40d2-a396-e41fcab5b2bc)
 
 
+
+# ecFLOW  with PySCHISM
+
+ecflow_client --port 3141 --load=/home/mjisan/pyschism_suite.def
+ecflow_client --port 3141 --begin=pyschism_suite
+    task gen_manning
+      edit ECF_SCRIPT '/home/mjisan/course/preprocess/gen_manning.ecf'
+    task gen_bctides
+      edit ECF_SCRIPT '/home/mjisan/course/preprocess/gen_bctides.ecf'
+    task gen_sflux_era5
+      edit ECF_SCRIPT '/home/mjisan/course/preprocess/gen_sflux_era5.ecf'
+
+
 ### 7. ecFLOW port change
 
 ecflow_start.sh -p 3141
