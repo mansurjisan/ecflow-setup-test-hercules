@@ -283,4 +283,6 @@ GUI interface
 ![2024-08-08 08_53_49-ecFlowUI (5 13 3) - (menu_ admin)@hercules-login-2 hpc msstate edu](https://github.com/user-attachments/assets/34903685-d903-40d2-a396-e41fcab5b2bc)
 
 
+### 7. ecFLOW port change
 
+ecflow_start.sh -p 3141
