@@ -390,6 +390,7 @@ ecflow_client --port 3141 --load=/home/mjisan/ufs_coastal_suite.def
 ecflow_client --port 3141 --begin /ufs_coastal_suite
 
 ecflow_client --port 3141 --force=set /ufs_coastal_suite/compile/compile_model:wave_coupling_off
+
 ecflow_client --port 3141 --force=set /ufs_coastal_suite/compile/compile_model_with_waves:wave_coupling_on
 
 
