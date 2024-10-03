@@ -299,3 +299,53 @@ ecflow_client --port 3141 --begin=pyschism_suite
 ### 7. ecFLOW port change
 
 ecflow_start.sh -p 3141
+
+
+## ecFlow based UFS-coastal
+
+### Definition file
+
+(myecflow) [mjisan@hercules-01-06 ~]$ cat ufs_coastal_suite.def
+suite ufs_coastal_suite
+  edit ECF_HOME '/home/mjisan/workflow'
+  edit ECF_INCLUDE '/home/mjisan/workflow'
+  edit WAVE_COUPLING 'ON'  # Can be 'OFF' or 'ON'
+  edit UFS_CLUSTER 'hercules'  # Adjust as needed
+  edit RUN_TYPE 'coastal_ike_shinnecock'  # Can be customized for different run types
+
+  family compile
+    task compile_model
+      edit ECF_SCRIPT '%ECF_HOME%/ecf/compile_model.ecf'
+      edit APP 'CSTLS'
+      edit USE_ATMOS 'ON'
+      edit NO_PARMETIS 'OFF'
+      edit OLDIO 'ON'
+      edit BUILD_UTILS 'ON'
+    task compile_model_with_waves
+      edit ECF_SCRIPT '%ECF_HOME%/ecf/compile_model_with_waves.ecf'
+      edit APP 'CSTLSW'
+      edit USE_ATMOS 'ON'
+      edit USE_WW3 'ON'
+      edit NO_PARMETIS 'OFF'
+      edit OLDIO 'ON'
+      edit PDLIB 'ON'
+      edit BUILD_UTILS 'ON'
+  endfamily
+
+
+### load definition suite
+
+ecflow_client --port 3141 --load=/home/mjisan/ufs_coastal_suite.def
+
+### alter the variable 
+
+ecflow_client --port 3141 --alter change variable WAVE_COUPLING ON /ufs_coastal_suite
+ecflow_client --port 3141 --alter change variable WAVE_COUPLING OFF /ufs_coastal_suite
+
+### begin the task
+
+ecflow_client --port 3141 --begin /ufs_coastal_suite
+
+### force delete
+ecflow_client --delete force /ufs_coastal_suite
+
